@@ -1,0 +1,53 @@
+@import '../../styles//mixins';
+
+.card {
+  @include onMobile {
+    width: 100%;
+  }
+  max-width: 450px;
+  // margin: 16px 16px 0 16px;
+
+  &:hover {
+    box-shadow: 0px 3px 13px rgba(13, 30, 39, 0.2);
+  }
+
+  &_date {
+    display: flex;
+    &--icon {
+      margin-right: 10px;
+    }
+  }
+  &_title {
+    margin: 8px 0;
+    min-height: 100px;
+    font-weight: 500;
+    font-size: 20px;
+  }
+  &_summary {
+    font-size: 14px;
+    min-height: 70px;
+
+    @include onMobile {
+      font-size: 13px;
+    }
+  }
+  &_button {
+    margin: 10px;
+    text-transform: none;
+    &:hover {
+      color: #565656;
+    }
+  }
+  &:hover .card_button--icon {
+    animation: scroll 2s ease infinite;
+  }
+}
+
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(0.2rem);
+  }
+}

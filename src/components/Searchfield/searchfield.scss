@@ -1,0 +1,18 @@
+.search {
+  margin-top: 16px;
+  border-bottom: 1px solid;
+  border-color: #a4a7b8bd;
+  &_bar {
+    @media screen and (max-width: 830px) {
+      width: 100%;
+    }
+    width: 350px;
+    margin: 8px 0;
+  }
+
+  &_text {
+    font-weight: 600;
+    font-size: 14px;
+    margin-top: 8px;
+  }
+}
