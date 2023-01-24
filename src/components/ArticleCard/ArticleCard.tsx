@@ -23,11 +23,7 @@ type ArticleCardProps = {
   onOpen?: (id: number) => void;
 };
 
-const ArticleCard: React.FC<ArticleCardProps> = ({
-  article,
-  keywords,
-  onOpen,
-}) => {
+const ArticleCard: React.FC<ArticleCardProps> = ({ article, keywords }) => {
   return (
     <Card className="card">
       <CardMedia
@@ -44,7 +40,7 @@ const ArticleCard: React.FC<ArticleCardProps> = ({
             color="secondary"
           />
           <Typography color="secondary" variant="subtitle2">
-            {article.updatedAt}
+            {article.updatedAt.slice(0, 10)}
           </Typography>
         </Box>
         <Box className="card_title">
@@ -66,7 +62,7 @@ const ArticleCard: React.FC<ArticleCardProps> = ({
         endIcon={<ArrowRightAltIcon className="card_button--icon" />}
         size="small"
         component={Link}
-        to={`/article/${article.id}`}
+        to={`/articles/${article.id}`}
       >
         Read more
       </Button>

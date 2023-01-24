@@ -7,15 +7,18 @@
   padding: 20px;
   flex-direction: column;
   justify-content: center;
+
   &_title {
     text-align: center;
     font-weight: 600;
     margin-bottom: 20px;
   }
+
   &_text {
     text-align: center;
     margin-bottom: 30px;
   }
+
   &_content--button {
     align-self: center;
     text-align: center;

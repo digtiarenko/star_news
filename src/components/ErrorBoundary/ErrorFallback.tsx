@@ -7,11 +7,13 @@ import './errorFallback.scss';
 function ErrorFallback({ error }: FallbackProps) {
   return (
     <Container className="error">
-      <Typography> 💥Something went very wrong...💥</Typography>
-      <Typography>{error.message}</Typography>
+      <Typography className="error_title">
+        💥Something went very wrong...💥
+      </Typography>
+      <Typography className="error_text">{error.message}</Typography>
       <Button
         startIcon={<KeyboardBackspaceIcon className="article_button--icon" />}
-        className="article_content--button"
+        className="error_content--button"
         component={Link}
         to={'/'}
       >

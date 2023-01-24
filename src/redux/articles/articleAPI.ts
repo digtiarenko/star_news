@@ -1,9 +1,10 @@
 import { BaseQueryFn, createApi } from '@reduxjs/toolkit/query/react';
 import { Article } from '../../types/types';
 import axios, { AxiosRequestConfig } from 'axios';
-// const { REACT_APP_DB_BASE_URL } = process.env;
+import { RootState } from '../store';
+const { REACT_APP_DB_BASE_URL } = process.env;
 
-// const baseURL: string | undefined = REACT_APP_DB_BASE_URL;
+const baseURL: string | undefined = REACT_APP_DB_BASE_URL;
 
 export type ArticleListState = {
   data: Article[] | [];
@@ -37,27 +38,32 @@ const axiosBaseQuery =
   };
 
 export const articleApi = createApi({
-  reducerPath: 'Articles',
+  reducerPath: 'articles',
   baseQuery: axiosBaseQuery({
-    baseUrl: 'https://api.spaceflightnewsapi.net/v3',
+    baseUrl: baseURL!,
   }),
-  tagTypes: ['Articles'],
+  tagTypes: ['articles'],
 
   endpoints: builder => ({
     //
-    getArticles: builder.query<any, void>({
-      query: () => ({ url: '/articles', method: 'GET' }),
-      keepUnusedDataFor: 1,
-      providesTags: ['Articles'],
+    getArticles: builder.query<Article[], number>({
+      query: page => ({
+        url: `/articles?_limit=9&_start=${page}`,
+        method: 'GET',
+      }),
+      //   keepUnusedDataFor: 1,
+      providesTags: ['articles'],
     }),
 
-    getOneArticle: builder.query({
+    getOneArticle: builder.query<Article, any>({
       query: id => ({
         url: `/articles/${id}`,
         method: 'GET',
+        providesTags: ['OneArticle'],
       }),
     }),
   }),
 });
+// export const getNumberOfResults = (state: RootState) => state.articles;
 
 export const { useGetArticlesQuery, useGetOneArticleQuery } = articleApi;

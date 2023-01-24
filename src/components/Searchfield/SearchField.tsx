@@ -2,7 +2,6 @@ import {
   Box,
   Container,
   InputAdornment,
-  LinearProgress,
   TextField,
   Typography,
 } from '@mui/material';
@@ -27,10 +26,7 @@ const SearchField = () => {
             ),
           }}
         />
-        <Typography className="search_text">
-          {/* {{displayArticles.length} ? `Results ${displayArticles.length}` : `No matching results :(`} */}
-          10
-        </Typography>
+        {/* <Typography className="search_text">Results: {page}</Typography> */}
       </Box>
     </Container>
   );
