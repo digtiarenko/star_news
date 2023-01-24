@@ -1,27 +1,23 @@
-import {
-  Box,
-  Button,
-  Container,
-  InputAdornment,
-  LinearProgress,
-  TextField,
-  Typography,
-} from '@mui/material';
+import { Box, Button } from '@mui/material';
 import KeyboardDoubleArrowDownIcon from '@mui/icons-material/KeyboardDoubleArrowDown';
 import './articleList.scss';
-import { useNavigate } from 'react-router-dom';
-import mockdata from '../../utils/data.json';
+// import { useNavigate } from 'react-router-dom';
+// import mockdata from '../../utils/data.json';
 import ArticleCard from '../ArticleCard/ArticleCard';
+import { useGetArticlesQuery } from '../../redux/articles/articleSlice';
+import { Article } from '../../types/types';
 
 const ArticleList = () => {
-  const navigate = useNavigate();
+  const { data, isLoading } = useGetArticlesQuery();
+  console.log(isLoading);
+  // const navigate = useNavigate();
   // const handleArticleOpen = (id: number) => {
   //   navigate(`/${id}`);
   // };
   return (
     <>
       <Box className="list_container">
-        {mockdata.map(article => {
+        {data.map((article: Article) => {
           return (
             <ArticleCard
               keywords={'keywords'}

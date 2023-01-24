@@ -34,6 +34,11 @@
   margin-bottom: 40px;
 }
 .loadMore_button {
+  background-color: white;
   width: 150px;
   box-shadow: 0px 3px 13px rgba(13, 30, 39, 0.2);
+
+  &:hover {
+    color: #565656;
+  }
 }
