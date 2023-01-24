@@ -48,7 +48,7 @@ export const articleApi = createApi({
     //
     getArticles: builder.query<Article[], number>({
       query: page => ({
-        url: `/articles?_limit=9&_start=${page}`,
+        url: `/articles?_limit=${page}`,
         method: 'GET',
       }),
       //   keepUnusedDataFor: 1,

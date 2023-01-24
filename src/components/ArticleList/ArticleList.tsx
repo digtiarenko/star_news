@@ -9,21 +9,34 @@ import {
   useAppDispatch,
   useAppSelector,
   selectCount,
+  increment,
 } from '../../redux/pagination/paginationSlice';
 import './articleList.scss';
+import { useEffect } from 'react';
 
 const ArticleList = () => {
+  const dispatch = useAppDispatch();
   const page = useAppSelector(selectCount);
-  console.log('page:', page);
-  // const numberOfArticlesToFetch = page;
+  // console.log('page:', page);
   const { data, isLoading } = useGetArticlesQuery(page);
+
+  useEffect(() => {
+    if (page > 9) {
+      window.scrollBy({
+        top: window.innerHeight * 0.9,
+        behavior: 'smooth',
+      });
+    }
+  }, [data]);
 
   return (
     <>
       {isLoading && <Loader />}
       {data && (
         <>
-          <Typography className="search_text">Results: {page}</Typography>
+          <Typography className="search_text">
+            Results: {data.length}
+          </Typography>
           <Box className="list_container">
             {data.map((article: Article) => {
               return (
@@ -40,6 +53,7 @@ const ArticleList = () => {
               className="loadMore_button"
               endIcon={<KeyboardDoubleArrowDownIcon />}
               size="small"
+              onClick={() => dispatch(increment())}
             >
               Load more
             </Button>
