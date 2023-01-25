@@ -3,7 +3,7 @@ import './articlePage.scss';
 import KeyboardBackspaceIcon from '@mui/icons-material/KeyboardBackspace';
 import NewspaperIcon from '@mui/icons-material/Newspaper';
 import { useParams, Link } from 'react-router-dom';
-import { useGetOneArticleQuery } from '../../redux/articles/articleAPI';
+import { useGetOneArticleQuery } from '../../redux/articleAPI';
 import Loader from '../../components/Loader/Loader';
 
 const ArticlePage = () => {

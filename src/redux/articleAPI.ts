@@ -1,7 +1,7 @@
 import { BaseQueryFn, createApi } from '@reduxjs/toolkit/query/react';
-import { Article } from '../../types/types';
+import { Article } from '../types/types';
 import axios, { AxiosRequestConfig } from 'axios';
-import { RootState } from '../store';
+import { RootState } from './store';
 const { REACT_APP_DB_BASE_URL } = process.env;
 
 const baseURL: string | undefined = REACT_APP_DB_BASE_URL;
@@ -37,7 +37,7 @@ const axiosBaseQuery =
     // Add error handling
   };
 
-export const articleApi = createApi({
+export const articlesApi = createApi({
   reducerPath: 'articles',
   baseQuery: axiosBaseQuery({
     baseUrl: baseURL!,
@@ -51,10 +51,28 @@ export const articleApi = createApi({
         url: `/articles?_limit=${page}`,
         method: 'GET',
       }),
-      //   keepUnusedDataFor: 1,
+      keepUnusedDataFor: 30,
       providesTags: ['articles'],
     }),
 
+    // getOneArticle: builder.query<Article, any>({
+    //   query: id => ({
+    //     url: `/articles/${id}`,
+    //     method: 'GET',
+    //     providesTags: ['OneArticle'],
+    //   }),
+    // }),
+  }),
+});
+
+export const oneArticleApi = createApi({
+  reducerPath: 'oneArticle',
+  baseQuery: axiosBaseQuery({
+    baseUrl: baseURL!,
+  }),
+  tagTypes: ['oneArticle'],
+
+  endpoints: builder => ({
     getOneArticle: builder.query<Article, any>({
       query: id => ({
         url: `/articles/${id}`,
@@ -66,4 +84,5 @@ export const articleApi = createApi({
 });
 // export const getNumberOfResults = (state: RootState) => state.articles;
 
-export const { useGetArticlesQuery, useGetOneArticleQuery } = articleApi;
+export const { useGetArticlesQuery } = articlesApi;
+export const { useGetOneArticleQuery } = oneArticleApi;

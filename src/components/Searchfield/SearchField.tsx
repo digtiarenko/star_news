@@ -7,16 +7,32 @@ import {
 } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
 import './searchfield.scss';
+import {
+  useAppDispatch,
+  changeFilter,
+  getFilter,
+  useAppSelector,
+} from '../../redux/filterSlice';
 
 const SearchField = () => {
+  const dispatch = useAppDispatch();
+
+  const filterValue = useAppSelector(getFilter);
+
+  const onChangeFilter = (event: { target: { value: any } }) => {
+    const { value } = event.target;
+    dispatch(changeFilter(value));
+  };
+
   return (
     <Container maxWidth="lg">
       <Box className="search">
         <Typography className="search_text">Filter by keywords</Typography>
         <TextField
+          value={filterValue}
           placeholder="Search article"
           size="small"
-          //   onChange={event => handleFilterChange(event.target.value)}
+          onChange={onChangeFilter}
           className="search_bar"
           InputProps={{
             startAdornment: (
@@ -26,7 +42,6 @@ const SearchField = () => {
             ),
           }}
         />
-        {/* <Typography className="search_text">Results: {page}</Typography> */}
       </Box>
     </Container>
   );

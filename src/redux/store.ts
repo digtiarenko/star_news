@@ -1,15 +1,20 @@
 import { configureStore } from '@reduxjs/toolkit';
 // import { useDispatch } from 'react-redux';
-import { articleApi } from './articles/articleAPI';
-import { pageSlice } from './pagination/paginationSlice';
+import { articlesApi, oneArticleApi } from './articleAPI';
+import { pageSlice } from './paginationSlice';
+import { filterSlice } from './filterSlice';
 
 const store = configureStore({
   reducer: {
-    [articleApi.reducerPath]: articleApi.reducer,
+    [articlesApi.reducerPath]: articlesApi.reducer,
+    [oneArticleApi.reducerPath]: oneArticleApi.reducer,
     pages: pageSlice.reducer,
+    filter: filterSlice.reducer,
   },
   middleware: getDefaultMiddleware =>
-    getDefaultMiddleware().concat(articleApi.middleware),
+    getDefaultMiddleware()
+      .concat(articlesApi.middleware)
+      .concat(oneArticleApi.middleware),
 });
 
 export type RootState = ReturnType<typeof store.getState>;

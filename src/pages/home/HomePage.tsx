@@ -1,16 +1,7 @@
-import {
-  Box,
-  Button,
-  Container,
-  InputAdornment,
-  LinearProgress,
-  TextField,
-  Typography,
-} from '@mui/material';
+import { Container } from '@mui/material';
 
 import ArticleList from '../../components/ArticleList/ArticleList';
 import SearchField from '../../components/Searchfield/SearchField';
-import ArticlePage from '../article/ArticlePage';
 
 const HomePage = () => {
   return (

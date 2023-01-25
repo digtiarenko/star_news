@@ -11,9 +11,6 @@ export interface Article {
   launches: LaunchEvent[];
   events: LaunchEvent[];
 }
-export interface FilterArticles extends Article {
-  weight: number;
-}
 
 type LaunchEvent = {
   id: string;

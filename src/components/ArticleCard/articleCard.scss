@@ -1,6 +1,9 @@
 @import '../../styles//mixins';
 
 .card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   @include onMobile {
     width: 100%;
   }
@@ -32,7 +35,10 @@
     }
   }
   &_button {
-    margin: 10px;
+    // align-self: flex-start;
+    // flex-grow: 2;
+
+    margin: 0 10px 10px 10px;
     text-transform: none;
     &:hover {
       color: #565656;

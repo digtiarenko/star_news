@@ -1,14 +1,10 @@
 import {
-  // Container,
   Typography,
   Button,
-  // Paper,
   Box,
   Card,
   CardContent,
   CardMedia,
-  // CardActionArea,
-  // LinearProgress,
 } from '@mui/material';
 import Highlighter from 'react-highlight-words';
 import ArrowRightAltIcon from '@mui/icons-material/ArrowRightAlt';
@@ -20,10 +16,19 @@ import './articleCard.scss';
 type ArticleCardProps = {
   article: Article;
   keywords?: string;
-  onOpen?: (id: number) => void;
 };
 
 const ArticleCard: React.FC<ArticleCardProps> = ({ article, keywords }) => {
+  const date = new Date(article.publishedAt).toLocaleString('en-us', {
+    month: 'short',
+    day: 'numeric',
+    year: 'numeric',
+  });
+  const shortSummary =
+    article.summary.length > 100
+      ? `${article.summary.slice(0, 98)}...`
+      : article.summary;
+
   return (
     <Card className="card">
       <CardMedia
@@ -40,20 +45,20 @@ const ArticleCard: React.FC<ArticleCardProps> = ({ article, keywords }) => {
             color="secondary"
           />
           <Typography color="secondary" variant="subtitle2">
-            {article.updatedAt.slice(0, 10)}
+            {date}
           </Typography>
         </Box>
         <Box className="card_title">
           <Highlighter
             textToHighlight={article.title}
-            searchWords={'keywords'.split(' ')}
+            searchWords={keywords!.split(' ')}
             autoEscape={true}
           />
         </Box>
         <Box className="card_summary">
           <Highlighter
-            textToHighlight={article.summary}
-            searchWords={'keywords'.split(' ')}
+            textToHighlight={shortSummary}
+            searchWords={keywords!.split(' ')}
           />
         </Box>
       </CardContent>
