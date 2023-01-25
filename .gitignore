@@ -7,7 +7,7 @@
 
 # testing
 /coverage
-
+.prettierrc.json
 # production
 /build
 
