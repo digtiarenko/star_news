@@ -1,21 +1,18 @@
 import { BaseQueryFn, createApi } from '@reduxjs/toolkit/query/react';
 import { Article } from '../types/types';
 import axios, { AxiosRequestConfig } from 'axios';
-import { RootState } from './store';
-const { REACT_APP_DB_BASE_URL } = process.env;
 
+const { REACT_APP_DB_BASE_URL } = process.env;
 const baseURL: string | undefined = REACT_APP_DB_BASE_URL;
 
 export type ArticleListState = {
   data: Article[] | [];
   loading: boolean;
-  //   keywords: string;
 };
 
 export const initialState: ArticleListState = {
   loading: true,
   data: [],
-  //   keywords: '',
 };
 
 const axiosBaseQuery =
@@ -54,14 +51,6 @@ export const articlesApi = createApi({
       keepUnusedDataFor: 30,
       providesTags: ['articles'],
     }),
-
-    // getOneArticle: builder.query<Article, any>({
-    //   query: id => ({
-    //     url: `/articles/${id}`,
-    //     method: 'GET',
-    //     providesTags: ['OneArticle'],
-    //   }),
-    // }),
   }),
 });
 
@@ -82,7 +71,6 @@ export const oneArticleApi = createApi({
     }),
   }),
 });
-// export const getNumberOfResults = (state: RootState) => state.articles;
 
 export const { useGetArticlesQuery } = articlesApi;
 export const { useGetOneArticleQuery } = oneArticleApi;

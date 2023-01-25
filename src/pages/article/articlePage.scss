@@ -52,7 +52,7 @@
 .article_center_container {
   margin-top: 20px;
   display: flex;
-  //   justify-content: space-between;
+
   @include onMobile {
     flex-direction: column-reverse;
     justify-content: center;

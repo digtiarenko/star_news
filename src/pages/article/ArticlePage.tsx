@@ -15,7 +15,6 @@ const ArticlePage = () => {
       <Container className="article_container" maxWidth="lg">
         <img className="article_image" src={data?.imageUrl} alt={data?.title} />
         <Paper className="article_content">
-          {' '}
           {isLoading && <Loader />}
           <Typography className="article_content--title">
             {data?.title}
