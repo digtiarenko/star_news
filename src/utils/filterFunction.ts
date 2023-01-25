@@ -9,8 +9,12 @@ export function filterArticlesByKeywords(
     let titleMatch = keywords.some(keyword =>
       article.title.toLowerCase().includes(keyword.toLowerCase()),
     );
+    const shortSummary =
+      article.summary.length > 100
+        ? `${article.summary.slice(0, 98)}...`
+        : article.summary;
     let summaryMatch = keywords.some(keyword =>
-      article.summary.toLowerCase().includes(keyword.toLowerCase()),
+      shortSummary.toLowerCase().includes(keyword.toLowerCase()),
     );
     if (titleMatch || summaryMatch) {
       filteredArticles.push(article);

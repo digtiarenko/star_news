@@ -32,7 +32,7 @@ const ArticleList = () => {
       {data && (
         <>
           <Typography className="search_text">
-            Results: {data.length}
+            Results: {filterArticles?.length}
           </Typography>
           <Box className="list_container">
             {filterArticles?.map((article: Article) => {
