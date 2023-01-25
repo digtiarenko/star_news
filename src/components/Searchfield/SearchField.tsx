@@ -21,6 +21,9 @@ const SearchField = () => {
 
   const onChangeFilter = (event: { target: { value: any } }) => {
     const { value } = event.target;
+    if (value === ' ') {
+      return;
+    }
     dispatch(changeFilter(value));
   };
 

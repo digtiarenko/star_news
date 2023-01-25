@@ -35,6 +35,9 @@ const ArticleList = () => {
             Results: {filterArticles?.length}
           </Typography>
           <Box className="list_container">
+            {!filterArticles?.length && (
+              <Typography>Sorry I couldn't find anything </Typography>
+            )}
             {filterArticles?.map((article: Article) => {
               return (
                 <ArticleCard
